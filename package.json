@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
@@ -22,5 +23,6 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "proxy": "https://openlab.openbankproject.com/obp/v3.1.0"
 }

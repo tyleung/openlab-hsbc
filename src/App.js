@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { getCurrentUser } from './api';
 
 class App extends Component {
+  btnTest = () => {
+    getCurrentUser().then(currUser => console.log(currUser));
+  };
+
   render() {
     return (
       <div className="App">
@@ -19,6 +24,9 @@ class App extends Component {
           >
             Learn React
           </a>
+          <button className="primary" onClick={this.btnTest}>
+            Get current user
+          </button>
         </header>
       </div>
     );
