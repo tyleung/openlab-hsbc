@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
   height: 100vh;
 }
 
@@ -28,6 +30,7 @@
 .App-header {
   /* background-image: url('/assets/nova.jpg'); */
   height: 160px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16), 0 2px 6px rgba(0, 0, 0, 0.23);
 }
 
 .App-link {
@@ -47,14 +50,6 @@
   max-width: 250px;
 }
 
-.mainContainer {
-  height: 72vh;
-}
-
-.mainContainer-collapsed {
-  height: 0vh;
-}
-
 .footer {
   background-color: #0baa90;
   color: white;
@@ -64,4 +59,27 @@
   right: 0;
   padding: 10px;
   height: 50px;
+  flex: 1;
+  /*box-shadow: 0 0px 6px rgba(0, 0, 0, 0.16), 0 0px 6px rgba(0, 0, 0, 0.23);*/
+}
+
+.footer-section {
+  display: flex;
+}
+
+.main-section {
+  display: flex;
+  flex: 1;
+}
+
+.main-left {
+  flex: 0 0 35%;
+}
+
+.info-section {
+  padding: 30px;
+}
+
+.main-right {
+  flex: 1;
 }
