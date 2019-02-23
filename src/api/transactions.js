@@ -11,3 +11,12 @@ export const getTransactionsAroundLocation = latlng => {
       console.log(error);
     });
 };
+
+export const getRealtimeData = () => {
+  return axios
+    .get('http://127.0.0.1:5000/realtime_chart')
+    .then(response => response.data)
+    .catch(error => {
+      console.log(error);
+    });
+};
