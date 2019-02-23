@@ -3,7 +3,7 @@
 
 # @Time    : 2019/2/24 02:02
 # @Author  : chen
-# @Site    : 
+# @Site    :
 # @File    : render_service.py.py
 # @Software: PyCharm
 
@@ -39,26 +39,29 @@ __author__ = "chen"
 
 class Echart_Graph(object):
 
-  def __init__(self):
-    self.title = {"text": "The Chart", "left": "center"}
-    self.textStyle = {"color":"#111", "fontStyle": "normal", "fontWeight": "bold", "fontFamily": "sans-serif", "fontSize": 22}
-    self.xAxis = {"type": "category", "data": []}
-    self.yAxis = {"type": "value"}
-    self.series = [{"data":[], "type": "line", "name": "", "color": "red", "showSymbol": "false", "hoverAnimation": "false"}]
+    def __init__(self):
+        self.title = {"text": "The Chart", "left": "center"}
+        self.textStyle = {"color": "#111", "fontStyle": "normal",
+                          "fontWeight": "bold", "fontFamily": "sans-serif", "fontSize": 22}
+        self.xAxis = {"type": "category", "data": []}
+        self.yAxis = {"type": "value"}
+        self.series = [{"data": [], "type": "line", "name": "",
+                        "color": "red", "showSymbol": "false", "hoverAnimation": "false"}]
 
-  def to_dict(self):
-    s = dict()
-    self.title['textStyle'] = self.textStyle
-    s['title'] = self.title
-    s['xAxis'] = self.xAxis
-    s['yAxis'] = self.yAxis
-    s['series'] = self.series
-    return s
+    def to_dict(self):
+        s = dict()
+        self.title['textStyle'] = self.textStyle
+        s['title'] = self.title
+        s['xAxis'] = self.xAxis
+        s['yAxis'] = self.yAxis
+        s['series'] = self.series
+        return s
+
 
 class Graph_Formatter(object):
 
-  def __init__(self):
-    pass
+    def __init__(self):
+        pass
 
-  def get_graph(self, data=[]):
-    return Echart_Graph().to_dict()
+    def get_graph(self, data=[]):
+        return Echart_Graph().to_dict()
