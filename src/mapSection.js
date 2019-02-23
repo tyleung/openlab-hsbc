@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import { Circle } from 'react-google-maps';
+import { Circle, Marker } from 'react-google-maps';
 import GMap from './gmap/gmap';
 import { getTransactionsAroundLocation } from './api/transactions';
 
 class MapSection extends Component {
   state = { circleCenter: undefined };
-  constructor(props) {
-    super(props);
-    this.circleref = React.createRef();
-  }
 
   onClick = e => {
     const latlng = { lat: e.latLng.lat(), lng: e.latLng.lng() };
@@ -31,7 +27,6 @@ class MapSection extends Component {
         fillColor="#FF0000"
         editable={true}
         onRightClick={e => this.setState({ circleCenter: undefined })}
-        ref={this.circleref}
       />
     );
   };
@@ -47,6 +42,14 @@ class MapSection extends Component {
         {this.state.circleCenter !== undefined
           ? this.renderCircle(this.state.circleCenter)
           : null}
+        {this.props.markers.length > 0 &&
+          this.props.markers.map((marker, index) => (
+            <Marker
+              key={index}
+              marker={marker}
+              position={{ lat: marker.lat, lng: marker.lng }}
+            />
+          ))}
       </GMap>
     );
   }
