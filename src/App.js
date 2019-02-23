@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './header';
 import InfoSection from './infoSection';
-import MainPage from './MainPage';
+import MapSection from './mapSection';
+import CategorySelectOverlay from './categorySelectOverlay';
 import Footer from './footer';
 import './api/getFirehoseAccounts';
 
@@ -31,7 +32,8 @@ class App extends Component {
             <InfoSection />
           </div>
           <div className="main-right">
-            <MainPage
+            <CategorySelectOverlay />
+            <MapSection
               showTwitter={this.state.showTwitter}
               userPosition={this.state.userPosition}
             />

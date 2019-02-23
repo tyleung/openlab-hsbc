@@ -3,7 +3,7 @@ import { Circle } from 'react-google-maps';
 import GMap from './gmap/gmap';
 import { getTransactionsAroundLocation } from './api/transactions';
 
-class MainPage extends Component {
+class MapSection extends Component {
   state = { circleCenter: undefined };
 
   onClick = e => {
@@ -46,4 +46,4 @@ class MainPage extends Component {
   }
 }
 
-export default MainPage;
+export default MapSection;
