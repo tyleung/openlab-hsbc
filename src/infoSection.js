@@ -5,8 +5,16 @@ class InfoSection extends Component {
   render() {
     return (
       <div className="info-section">
-        Click an area on the map or search for a product
-        <EchartsContainer />
+        <span className="info-section-text">
+          Click an area on the map or search for a product
+        </span>
+        <div className="info-section-charts">
+          <div className="info-section-chart-top">
+            <EchartsContainer />
+          </div>
+          <hr />
+          <div className="info-section-chart-bottom" />
+        </div>
       </div>
     );
   }
