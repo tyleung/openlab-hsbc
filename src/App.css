@@ -1,22 +1,33 @@
 .App {
   text-align: center;
+  height: 100vh;
 }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
-  pointer-events: none;
 }
 
-.App-header {
+.header-initial {
   background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  height: calc(100% - 50px);
+  transition: 500ms ease-out;
+}
+
+.header-h1 {
+  display: flex;
+  align-items: center;
+}
+
+.App-header {
+  /* background-image: url('/assets/nova.jpg'); */
+  height: 160px;
 }
 
 .App-link {
@@ -30,4 +41,27 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.tweetContainer {
+  max-width: 250px;
+}
+
+.mainContainer {
+  height: 72vh;
+}
+
+.mainContainer-collapsed {
+  height: 0vh;
+}
+
+.footer {
+  background-color: #282c34;
+  color: white;
+  position: relative;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 10px;
+  height: 50px;
 }
