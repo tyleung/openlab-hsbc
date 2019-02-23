@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import GMap from './gmap/gmap';
+import { getTransactionsAroundLocation } from './api/transactions';
 
 class MainPage extends Component {
   onClick = e => {
     const latlng = { lat: e.latLng.lat(), lng: e.latLng.lng() };
-    console.log(latlng);
+    getTransactionsAroundLocation(latlng).then(transactions =>
+      console.log(transactions)
+    );
   };
 
   render() {
