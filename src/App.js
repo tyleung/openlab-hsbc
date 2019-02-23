@@ -5,38 +5,35 @@ import InfoSection from './infoSection';
 import MapSection from './mapSection';
 import CategorySelectOverlay from './categorySelectOverlay';
 import Footer from './footer';
+import { mockSelectData } from './utils';
 import './api/getFirehoseAccounts';
 
 class App extends Component {
   state = {
-    showTwitter: undefined,
-    userPosition: {}
-  };
-
-  onShowTwitter = val => {
-    this.setState({ showTwitter: val });
+    selectValue: undefined,
+    transactions: []
   };
 
   // assume point of sale
   // assume store has physical account for each location
+
+  onSelectChange = e => {
+    const transactions = mockSelectData[e.target.value];
+    console.log(transactions);
+    this.setState({ selectValue: e.target.value, transactions });
+  };
 
   render() {
     return (
       <div className="App">
         <div className="main-section">
           <div className="main-left">
-            <Header
-              showTwitter={this.state.showTwitter}
-              onShowTwitter={this.onShowTwitter}
-            />
+            <Header />
             <InfoSection />
           </div>
           <div className="main-right">
-            <CategorySelectOverlay />
-            <MapSection
-              showTwitter={this.state.showTwitter}
-              userPosition={this.state.userPosition}
-            />
+            <CategorySelectOverlay onChange={this.onSelectChange} />
+            <MapSection markers={this.state.transactions} />
           </div>
         </div>
         <div className="footer-section">
