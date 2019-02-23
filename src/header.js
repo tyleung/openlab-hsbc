@@ -8,7 +8,7 @@ const Header = () => {
         <img
           src={window.location.origin + '/assets/logo.png'}
           alt="logo"
-          width={60}
+          width={100}
         />
       </h1>
     </header>
