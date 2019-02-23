@@ -42,6 +42,9 @@ logger = logging.getLogger(__name__)
 class Echart_Graph(object):
 
   def __init__(self, type='common'):
+
+    self._type = type
+
     self.title = {"text": "The Chart", "left": "center"}
     self.textStyle = {"color":"#111", "fontStyle": "normal", "fontWeight": "bold", "fontFamily": "sans-serif", "fontSize": 22}
     self.tooltip = {"trigger": "axis", "axisPointer": {"animation": False}, "formatter": "function(params) {return params[0].value}"}
