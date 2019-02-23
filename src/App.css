@@ -118,8 +118,9 @@
   z-index: 99;
   opacity: 0.7;
   top: 20px;
-  left: 65%;
+  left: 52.5%;
   margin: auto;
+  width: 30%;
 }
 
 .category-select-overlay:hover {
