@@ -103,7 +103,7 @@ class TransactionMocker:
 
     def transaction_generator(self, num: int = 10000, output_path: str = '') -> str:
 
-        with open('./server/data/customer_info.json', 'r') as f:
+        with open('./data/customer_info.json', 'r') as f:
             ids = [customer['customer_id'] for customer in json.load(f)]
         num_ids = len(ids) - 1
 
@@ -132,5 +132,5 @@ class TransactionMocker:
 if __name__ == '__main__':
     num_trans = 10
 
-    trans = TransactionMocker().transaction_generator(num_trans, './server/data/test.json')
+    trans = TransactionMocker().transaction_generator(num_trans, './data/1.json')
     print(trans)

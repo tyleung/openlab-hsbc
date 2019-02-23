@@ -120,7 +120,7 @@ class Rand_Gen(object):
         product_types = {
             'hot_types': ['Electronics', 'Fashion', 'PersonalCare', 'Movie&Music'],
             'mid_types': ['Softwares', 'Baby', 'Books', 'Household'],
-            'cold_types': ['Automotive', 'Pet', 'industrial']
+            'cold_types': ['Automotive', 'Pet', 'Industrial']
         }
         
         r = random.random()
@@ -166,5 +166,6 @@ class Rand_Gen(object):
             return str((base-10)*1000)
 
         
-# if __name__ == '__main__':
-#     print(Rand_Gen.get_rand_time())
+if __name__ == '__main__':
+    for i in range(10):
+        print(Rand_Gen.get_rand_geo()) 
