@@ -5,6 +5,10 @@ import { getTransactionsAroundLocation } from './api/transactions';
 
 class MapSection extends Component {
   state = { circleCenter: undefined };
+  constructor(props) {
+    super(props);
+    this.circleref = React.createRef();
+  }
 
   onClick = e => {
     const latlng = { lat: e.latLng.lat(), lng: e.latLng.lng() };
@@ -26,6 +30,8 @@ class MapSection extends Component {
         strokeWeight={2}
         fillColor="#FF0000"
         editable={true}
+        onRightClick={e => this.setState({ circleCenter: undefined })}
+        ref={this.circleref}
       />
     );
   };
