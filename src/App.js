@@ -3,6 +3,7 @@ import './App.css';
 import Header from './header';
 import MainPage from './MainPage';
 import Footer from './footer';
+import './api/getFirehoseAccounts';
 
 class App extends Component {
   state = {
@@ -13,6 +14,9 @@ class App extends Component {
   onShowTwitter = val => {
     this.setState({ showTwitter: val });
   };
+
+  // assume point of sale
+  // assume store has physical account for each location
 
   render() {
     return (
