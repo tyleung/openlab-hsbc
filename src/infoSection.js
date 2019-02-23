@@ -1,7 +1,28 @@
 import React, { Component } from 'react';
-import EchartsContainer from './echartsContainer';
+import { EchartsContainer2 } from './echartsContainer';
+import { getRealtimeData } from './api/transactions';
 
 class InfoSection extends Component {
+  state = {
+    option: {}
+  };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.circleCenter === this.props.circleCenter) {
+      // do nothing
+    } else if (this.props.circleCenter !== undefined) {
+      this.intervalId = setInterval(() => {
+        getRealtimeData().then(option => this.setState({ option }));
+      }, 1000);
+    } else {
+      clearInterval(this.intervalId);
+    }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalId);
+  }
+
   render() {
     return (
       <div className="info-section">
@@ -9,11 +30,11 @@ class InfoSection extends Component {
           Click an area on the map or search by category
         </span>
         <div className="info-section-charts">
-          <div className="info-section-chart-top">
-            <EchartsContainer />
-          </div>
+          <div className="info-section-chart-top" />
           <hr />
-          <div className="info-section-chart-bottom" />
+          <div className="info-section-chart-bottom">
+            <EchartsContainer2 option={this.state.option} />
+          </div>
         </div>
       </div>
     );

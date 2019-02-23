@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactEcharts from 'echarts-for-react';
 
-class EchartsContainer extends Component {
+export class EchartsContainer1 extends Component {
   render() {
     const option = {
       title: {
@@ -40,4 +40,8 @@ class EchartsContainer extends Component {
   }
 }
 
-export default EchartsContainer;
+export class EchartsContainer2 extends Component {
+  render() {
+    return <ReactEcharts option={this.props.option} />;
+  }
+}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Circle, Marker } from 'react-google-maps';
 import GMap from './gmap/gmap';
-import { getTransactionsAroundLocation } from './api/transactions';
+// import { getTransactionsAroundLocation } from './api/transactions';
 
 class MapSection extends Component {
   state = { circleCenter: undefined };
@@ -11,8 +11,8 @@ class MapSection extends Component {
     //getTransactionsAroundLocation(latlng)
     //  .then(transactions => console.log(transactions))
     //  .then(() => {
-    console.log(latlng);
     this.setState({ circleCenter: latlng });
+    this.props.onClick(latlng);
     //  });
   };
 
@@ -26,7 +26,10 @@ class MapSection extends Component {
         strokeWeight={2}
         fillColor="#FF0000"
         editable={true}
-        onRightClick={e => this.setState({ circleCenter: undefined })}
+        onRightClick={e => {
+          this.setState({ circleCenter: undefined });
+          this.props.onClick(undefined);
+        }}
       />
     );
   };

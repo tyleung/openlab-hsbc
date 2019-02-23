@@ -11,11 +11,16 @@ import './api/getFirehoseAccounts';
 class App extends Component {
   state = {
     selectValue: undefined,
-    transactions: []
+    transactions: [],
+    circleCenter: undefined
   };
 
   // assume point of sale
   // assume store has physical account for each location
+
+  onMapClick = circleCenter => {
+    this.setState({ circleCenter });
+  };
 
   onSelectChange = e => {
     const transactions = mockSelectData[e.target.value];
@@ -29,11 +34,14 @@ class App extends Component {
         <div className="main-section">
           <div className="main-left">
             <Header />
-            <InfoSection />
+            <InfoSection circleCenter={this.state.circleCenter} />
           </div>
           <div className="main-right">
             <CategorySelectOverlay onChange={this.onSelectChange} />
-            <MapSection markers={this.state.transactions} />
+            <MapSection
+              markers={this.state.transactions}
+              onClick={this.onMapClick}
+            />
           </div>
         </div>
         <div className="footer-section">
