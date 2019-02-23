@@ -19,14 +19,18 @@ const Header = props => {
       </h1>
       <div className="p-3">
         <button
-          className={props.showTwitter === true ? 'primary' : 'secondary'}
+          className={`btn ${
+            props.showTwitter === true ? 'btn-primary' : 'btn-secondary'
+          }`}
           active={props.showTwitter === true}
           onClick={() => props.onShowTwitter(true)}
         >
           Twitter Data <IconTwitter className="pl-1" />
         </button>{' '}
         <button
-          className={props.showTwitter === false ? 'primary' : 'secondary'}
+          className={`btn ${
+            props.showTwitter === false ? 'btn-primary' : 'btn-secondary'
+          }`}
           active={props.showTwitter === false}
           onClick={() => props.onShowTwitter(false)}
         >
