@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Header from './header';
+import InfoSection from './infoSection';
 import MainPage from './MainPage';
 import Footer from './footer';
 import './api/getFirehoseAccounts';
@@ -21,15 +22,24 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header
-          showTwitter={this.state.showTwitter}
-          onShowTwitter={this.onShowTwitter}
-        />
-        <MainPage
-          showTwitter={this.state.showTwitter}
-          userPosition={this.state.userPosition}
-        />
-        <Footer />
+        <div className="main-section">
+          <div className="main-left">
+            <Header
+              showTwitter={this.state.showTwitter}
+              onShowTwitter={this.onShowTwitter}
+            />
+            <InfoSection />
+          </div>
+          <div className="main-right">
+            <MainPage
+              showTwitter={this.state.showTwitter}
+              userPosition={this.state.userPosition}
+            />
+          </div>
+        </div>
+        <div className="footer-section">
+          <Footer />
+        </div>
       </div>
     );
   }

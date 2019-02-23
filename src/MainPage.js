@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Circle } from 'react-google-maps';
 import GMap from './gmap/gmap';
-import InfoSection from './infoSection';
 import { getTransactionsAroundLocation } from './api/transactions';
 
 class MainPage extends Component {
@@ -33,21 +32,16 @@ class MainPage extends Component {
 
   render() {
     return (
-      <div className="main-page">
-        <InfoSection />
-        <div className="gmap">
-          <GMap
-            loadingElement={<div style={{ height: `100%` }} />}
-            containerElement={<div style={{ height: `72vh` }} />}
-            mapElement={<div style={{ height: `100%` }} />}
-            onClick={this.onClick}
-          >
-            {this.state.circleCenter !== undefined
-              ? this.renderCircle(this.state.circleCenter)
-              : null}
-          </GMap>
-        </div>
-      </div>
+      <GMap
+        loadingElement={<div style={{ height: `100%` }} />}
+        containerElement={<div style={{ height: `100%` }} />}
+        mapElement={<div style={{ height: `100%` }} />}
+        onClick={this.onClick}
+      >
+        {this.state.circleCenter !== undefined
+          ? this.renderCircle(this.state.circleCenter)
+          : null}
+      </GMap>
     );
   }
 }
