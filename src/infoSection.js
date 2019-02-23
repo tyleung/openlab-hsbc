@@ -6,7 +6,7 @@ class InfoSection extends Component {
     return (
       <div className="info-section">
         <span className="info-section-text">
-          Click an area on the map or search for a product
+          Click an area on the map or search by category
         </span>
         <div className="info-section-charts">
           <div className="info-section-chart-top">
