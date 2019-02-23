@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
   height: 100vh;
 }
 
@@ -48,14 +50,6 @@
   max-width: 250px;
 }
 
-.mainContainer {
-  height: 72vh;
-}
-
-.mainContainer-collapsed {
-  height: 0vh;
-}
-
 .footer {
   background-color: #0baa90;
   color: white;
@@ -65,18 +59,27 @@
   right: 0;
   padding: 10px;
   height: 50px;
+  flex: 1;
   /*box-shadow: 0 0px 6px rgba(0, 0, 0, 0.16), 0 0px 6px rgba(0, 0, 0, 0.23);*/
 }
 
-.main-page {
+.footer-section {
   display: flex;
 }
 
-.info-section {
+.main-section {
+  display: flex;
+  flex: 1;
+}
+
+.main-left {
   flex: 0 0 30%;
+}
+
+.info-section {
   padding: 30px;
 }
 
-.gmap {
+.main-right {
   flex: 1;
 }
