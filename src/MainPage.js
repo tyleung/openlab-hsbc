@@ -1,23 +1,24 @@
 import React, { Component } from 'react';
-import TwitterPage from './twitter';
-import DronePage from './drone';
+import GMap from './gmap/gmap';
+import { getTransactionsAroundLocation } from './api/transactions';
 
 class MainPage extends Component {
+  onClick = e => {
+    const latlng = { lat: e.latLng.lat(), lng: e.latLng.lng() };
+    getTransactionsAroundLocation(latlng).then(transactions =>
+      console.log(transactions)
+    );
+  };
+
   render() {
     return (
-      <div
-        className={
-          this.props.showTwitter !== undefined
-            ? 'mainContainer'
-            : 'mainContainer-collapsed'
-        }
-      >
-        {this.props.showTwitter === true && (
-          <TwitterPage userPosition={this.props.userPosition} />
-        )}
-        {this.props.showTwitter === false && (
-          <DronePage userPosition={this.props.userPosition} />
-        )}
+      <div>
+        <GMap
+          loadingElement={<div style={{ height: `100%` }} />}
+          containerElement={<div style={{ height: `72vh` }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+          onClick={this.onClick}
+        />
       </div>
     );
   }
