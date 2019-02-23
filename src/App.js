@@ -2,11 +2,19 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { getCurrentUser } from './api';
+import { testApi } from './openlab';
 
 class App extends Component {
   btnTest = () => {
     getCurrentUser().then(currUser => console.log(currUser));
   };
+
+  apiTest = () => {
+
+  };
+
+  // assume point of sale
+  // assume store has physical account for each location
 
   render() {
     return (
@@ -27,6 +35,7 @@ class App extends Component {
           <button className="primary" onClick={this.btnTest}>
             Get current user
           </button>
+          <button className="primary" onClick={}></button>
         </header>
       </div>
     );
