@@ -41,26 +41,11 @@ logger = logging.getLogger(__name__)
 
 class Echart_Graph(object):
 
-<<<<<<< HEAD
-    def __init__(self):
-        self.title = {"text": "The Chart", "left": "center"}
-        self.textStyle = {"color": "#111", "fontStyle": "normal",
-                          "fontWeight": "bold", "fontFamily": "sans-serif", "fontSize": 22}
-        self.xAxis = {"type": "category", "data": []}
-        self.yAxis = {"type": "value"}
-        self.series = [{"data": [], "type": "line", "name": "",
-                        "color": "red", "showSymbol": "false", "hoverAnimation": "false"}]
 
-    def to_dict(self):
-        s = dict()
-        self.title['textStyle'] = self.textStyle
-        s['title'] = self.title
-        s['xAxis'] = self.xAxis
-        s['yAxis'] = self.yAxis
-        s['series'] = self.series
-        return s
-=======
   def __init__(self, type='common'):
+
+    self._type = type
+
     self.title = {"text": "The Chart", "left": "center"}
     self.textStyle = {"color":"#111", "fontStyle": "normal", "fontWeight": "bold", "fontFamily": "sans-serif", "fontSize": 22}
     self.tooltip = {"trigger": "axis", "axisPointer": {"animation": False}, "formatter": "function(params) {return params[0].value}"}
@@ -102,18 +87,9 @@ class Echart_Graph(object):
             ]
         }
 
->>>>>>> 83bfe4e127ead19f6c65ff90b89e66a8b9219808
-
 
 class Graph_Formatter(object):
 
-    def __init__(self):
-        pass
-
-<<<<<<< HEAD
-    def get_graph(self, data=[]):
-        return Echart_Graph().to_dict()
-=======
   def get_graph(self, title_text="", xdata=[], ydata=[], series_type='line', xtype='category'):
     logger.info("start rendering graph...")
     graph = Echart_Graph()
@@ -134,4 +110,3 @@ class Graph_Formatter(object):
       logger.info("xaxis type setted...")
     logger.info("finish rendering graph!")
     return graph.to_dict()
->>>>>>> 83bfe4e127ead19f6c65ff90b89e66a8b9219808
