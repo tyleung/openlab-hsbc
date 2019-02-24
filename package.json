@@ -5,11 +5,14 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
+    "echarts": "^4.1.0",
+    "echarts-for-react": "^2.0.15-beta.0",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-google-maps": "^9.4.5",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.5"
+    "react-scripts": "2.1.5",
+    "react-vis": "^1.11.6"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -25,6 +28,5 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "proxy": "https://openlab.openbankproject.com/obp"
+  ]
 }

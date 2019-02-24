@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
   height: 100vh;
 }
 
@@ -9,14 +11,14 @@
 }
 
 .header-initial {
-  background-color: #282c34;
+  background-color: #0baa90;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  height: calc(100% - 50px);
+  /*height: calc(100% - 50px);*/
   transition: 500ms ease-out;
 }
 
@@ -27,7 +29,11 @@
 
 .App-header {
   /* background-image: url('/assets/nova.jpg'); */
-  height: 160px;
+  height: 105px;
+  margin-top: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16), 0 2px 6px rgba(0, 0, 0, 0.23);
+  background: transparent url(/assets/bg-pattern.a61ac35d.svg) 0 0 repeat;
+  /*background-color: #0baa90;*/
 }
 
 .App-link {
@@ -47,21 +53,78 @@
   max-width: 250px;
 }
 
-.mainContainer {
-  height: 72vh;
-}
-
-.mainContainer-collapsed {
-  height: 0vh;
-}
-
 .footer {
-  background-color: #282c34;
-  color: white;
+  background-color: #fff;
+  color: #888;
   position: relative;
   left: 0;
   bottom: 0;
   right: 0;
   padding: 10px;
-  height: 50px;
+  height: 40px;
+  flex: 1;
+  font-size: 0.8em;
+  box-shadow: 0 0px 6px rgba(0, 0, 0, 0.16), 0 0px 6px rgba(0, 0, 0, 0.23);
+}
+
+.footer-section {
+  display: flex;
+}
+
+.main-section {
+  display: flex;
+  flex: 1;
+}
+
+.main-left {
+  display: flex;
+  flex: 0 0 35%;
+  flex-direction: column;
+}
+
+.info-section {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  flex: 1;
+}
+
+.info-section-text {
+  padding: 10px;
+  font-size: 0.8em;
+}
+
+.info-section-charts {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.info-section-chart-top {
+  /*box-sizing: border-box;*/
+  /*max-height: inherit;*/
+}
+
+.info-section-chart-bottom {
+  /*box-sizing: border-box;*/
+  /*max-height: inherit;*/
+}
+
+.main-right {
+  flex: 1;
+}
+
+.category-select-overlay {
+  position: absolute;
+  z-index: 99;
+  opacity: 0.7;
+  top: 20px;
+  left: 52.5%;
+  margin: auto;
+  width: 30%;
+}
+
+.category-select-overlay:hover {
+  opacity: 0.9;
+  transition: 300ms ease-out;
 }
