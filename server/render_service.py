@@ -39,60 +39,75 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-class Echart_Graph(object):
 
+class Echart_Graph(object):
 
   def __init__(self, type='common'):
 
     self._type = type
 
     self.title = {"text": "The Chart", "left": "center"}
-    self.textStyle = {"color":"#111", "fontStyle": "normal", "fontWeight": "bold", "fontFamily": "sans-serif", "fontSize": 22}
-    self.tooltip = {"trigger": "axis", "axisPointer": {"animation": False}, "formatter": "function(params) {return params[0].value}"}
+    self.textStyle = {"color": "#111", "fontStyle": "normal", "fontWeight": "bold", "fontFamily": "sans-serif",
+                      "fontSize": 22}
+    self.tooltip = {"trigger": "axis", "axisPointer": {"animation": False},
+                    "formatter": "function(params) {return params[0].value}"}
     self.legend = {"x": "center", "y": "bottom", "data": []}
     if type == 'common':
       self.xAxis = {"data": [0, 1, 2, 3, 4], "type": "category", "splitLine": {"show": False}}
       self.yAxis = {"type": "value", "splitLine": {"show": False}}
-      self.series = [{"data":[1, 2, 1, 3, 4], "type": "line", "name": "", "color": "red", "showSymbol": False, "hoverAnimation": False}]
+      self.series = [{"data": [1, 2, 1, 3, 4], "type": "line", "name": "", "color": "red", "showSymbol": False,
+                      "hoverAnimation": False}]
     elif type == 'bar':
       self.toolbox = {
         "show": True,
         "feature": {
-            "mark": {"show": True},
-            "dataView": {"show": True, "readOnly": False},
-            "magicType": {
-                "show": True,
-                "type": ["pie", "funnel"]
-            },
-            "restore": {"show": True},
-            "saveAsImage": {"show": True}
+          "mark": {"show": True},
+          "dataView": {"show": True, "readOnly": False},
+          "magicType": {
+            "show": True,
+            "type": ["pie", "funnel"]
+          },
+          "restore": {"show": True},
+          "saveAsImage": {"show": True}
         }
       }
       self.calculable = True
       self.series = {
-            "name":"面积模式",
-            "type":"pie",
-            "radius": [30, 110],
-            "center": ["50%", "50%"],
-            "roseType": "area",
-            "data":[
-                {"value":10, "name":"rose1"},
-                {"value":5, "name":"rose2"},
-                {"value":15, "name":"rose3"},
-                {"value":25, "name":"rose4"},
-                {"value":20, "name":"rose5"},
-                {"value":35, "name":"rose6"},
-                {"value":30, "name":"rose7"},
-                {"value":40, "name":"rose8"}
-            ]
-        }
+        "name": "面积模式",
+        "type": "pie",
+        "radius": [30, 110],
+        "center": ["50%", "50%"],
+        "roseType": "area",
+        "data": [
+          {"value": 10, "name": "rose1"},
+          {"value": 5, "name": "rose2"},
+          {"value": 15, "name": "rose3"},
+          {"value": 25, "name": "rose4"},
+          {"value": 20, "name": "rose5"},
+          {"value": 35, "name": "rose6"},
+          {"value": 30, "name": "rose7"},
+          {"value": 40, "name": "rose8"}
+        ]
+      }
+
+  def to_dict(self):
+    s = dict()
+    self.title['textStyle'] = self.textStyle
+    s['title'] = self.title
+    s['xAxis'] = self.xAxis
+    s['yAxis'] = self.yAxis
+    s['series'] = self.series
+    return s
 
 
 class Graph_Formatter(object):
 
-  def get_graph(self, title_text="", xdata=[], ydata=[], series_type='line', xtype='category'):
+  def __init__(self):
+    pass
+
+  def get_graph(self, type="common", title_text="", xdata=[], ydata=[], series_type='line', xtype='category'):
     logger.info("start rendering graph...")
-    graph = Echart_Graph()
+    graph = Echart_Graph(type=type)
     if len(xdata) > 0:
       graph.xAxis['data'] = xdata
       logger.info("xdata setted...")
