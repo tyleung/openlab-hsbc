@@ -5,6 +5,7 @@ import GMap from './gmap/gmap';
 
 class MapSection extends Component {
   state = { circleCenter: undefined };
+  parentHandler = this.props.onRadiusChange;
 
   onClick = e => {
     const latlng = { lat: e.latLng.lat(), lng: e.latLng.lng() };
@@ -18,6 +19,8 @@ class MapSection extends Component {
 
   radiusChangedHandler = e => {
     // this.
+    console.log(e);
+    this.parentHandler(e);
   };
 
   renderCircle = center => {
@@ -34,7 +37,10 @@ class MapSection extends Component {
           this.setState({ circleCenter: undefined });
           this.props.onClick(undefined);
         }}
-        // onRadiusChanged={radiusChangedHandler}
+        onRadiusChanged={e => {
+          console.log(this.props.children)
+          this.radiusChangedHandler(this.radius);
+        }}
       />
     );
   };

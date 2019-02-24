@@ -8,6 +8,7 @@ import Footer from './footer';
 import { mockSelectData } from './utils';
 import { getRealtimeData } from './api/transactions';
 import './api/getFirehoseAccounts';
+import random from Math;
 
 class App extends Component {
   state = {
@@ -22,7 +23,16 @@ class App extends Component {
 
   onMapClick = circleCenter => {
     this.setState({ circleCenter });
+    this.beginAnimation({
+      radius: 0.001,
+      loc: `${random()}`,
+      product_type: this.state.selectValue
+    })
   };
+
+  onBubbleRadiusChange = radius => {
+    console.log('new radius changed');
+  }
 
   onSelectChange = e => {
     const transactions = mockSelectData[e.target.value];
@@ -43,7 +53,8 @@ class App extends Component {
   setNewChartData = options => {
     return getRealtimeData({
       radius: 0.001,
-      product_type: 'Baby'
+      product_type: 'Baby',
+      loc: '0'
     }).then(option => {this.setState({data: option})});
   }
 
@@ -52,7 +63,8 @@ class App extends Component {
     this.intervalId = setInterval(() => {
       getRealtimeData({
         radius: options.radius || 0.001,
-        product_type: options.product_type
+        product_type: options.product_type || 'Baby',
+        loc: options.loc || '0'
       }).then(option => this.setState({ data: option }));
     }, 1000);
   }
@@ -70,6 +82,7 @@ class App extends Component {
             <MapSection
               markers={this.state.transactions}
               onClick={this.onMapClick}
+              onRadiusChange={this.onBubbleRadiusChange}
             />
           </div>
         </div>
