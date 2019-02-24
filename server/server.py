@@ -53,14 +53,14 @@ def get_area_info():
     gender_info = analysis_result['gender']
 
 
+    color_list = ['#5793f3', '#d14a61', '#675bba', '#E15457']
     if age_info:
       age_graph = Graph_Formatter().get_graph(title_text="Age Distribution of the Area",
                                           xdata=age_info[0],
                                           ydata=age_info[1],
                                           series_type = 'bar')
-      color_list = ['#5793f3', '#d14a61', '#675bba']
-      for index, series in enumerate(age_graph['series']):
-        series['color'] = color_list[index // 3]
+      for series in age_graph['series']:
+        series['color'] = color_list[0]
       result['age_graph'] = age_graph
 
     if credit_info:
@@ -68,9 +68,8 @@ def get_area_info():
                                           xdata=credit_info[0],
                                           ydata=credit_info[1],
                                           series_type = 'bar')
-      color_list = ['#D7DA8B', '#E15457']
-      for index, series in enumerate(age_graph['series']):
-        series['color'] = color_list[index // 2]
+      for series in credit_graph['series']:
+        series['color'] = color_list[1]
       result['credit_graph'] = credit_graph
 
     if edu_info:
@@ -78,9 +77,8 @@ def get_area_info():
                                           xdata=edu_info[0],
                                           ydata=edu_info[1],
                                           series_type = 'bar')
-      colors = ['#5793f3', '#d14a61', '#675bba']
-      for index, series in enumerate(age_graph['series']):
-        series['color'] = color_list[index // 3]
+      for series in edu_graph['series']:
+        series['color'] = color_list[2]
       result['edu_info'] = edu_graph
 
     if gender_info:
@@ -88,9 +86,8 @@ def get_area_info():
                                           xdata=gender_info[0],
                                           ydata=gender_info[1],
                                           series_type = 'bar')
-      color_list = ['#D7DA8B', '#E15457']
-      for index, series in enumerate(age_graph['series']):
-        series['color'] = color_list[index // 2]
+      for series in gender_graph['series']:
+        series['color'] = color_list[3]
       result['gender_graph'] = gender_graph
 
   response = make_response(jsonify(result), 200)
