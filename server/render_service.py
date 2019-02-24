@@ -105,7 +105,7 @@ class Graph_Formatter(object):
   def __init__(self):
     pass
 
-  def get_graph(self, type="common", title_text="", xdata=[], ydata=[], series_type='line', xtype='category'):
+  def get_graph(self, type="common", title_text="", xdata=[], ydata=[], series_type='line', xtype='category', colors=['red']):
     logger.info("start rendering graph...")
     graph = Echart_Graph(type=type)
     if len(xdata) > 0:
