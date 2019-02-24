@@ -43,8 +43,8 @@ class Search(object):
             customers.extend(trans)
         return list(set(customers))
 
-if __name__ == '__main__':
-    s = Search(['./data/test.json'])
-    cs = s.get_customers_by_location('22.288077', '114.193743')
-    ls = s.get_locations_by_product_type('Fashion')
-    print('sth')
+# if __name__ == '__main__':
+#     s = Search(['./data/test.json'])
+#     cs = s.get_customers_by_location('22.288077', '114.193743')
+#     ls = s.get_locations_by_product_type('Fashion')
+#     print('sth')
