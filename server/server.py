@@ -100,7 +100,13 @@ def get_chart():
 
 @app.route("/realtime_chart", methods=['GET'])
 def realtime_chart():
-  xdata, ydata = Realtime_Monitor.get_current_data()
+  radius = request.args.get('radius')
+  product_type = request.args.get('product_type')
+  if radius:
+    logger.info(f"get real time transactions in radius: {radius}")
+  if product_type:
+    logger.info(f"get real time transactions for product_type: {product_type}")
+  xdata, ydata = Realtime_Monitor.get_current_data(product_type=product_type, radius=float(radius))
   graph = Graph_Formatter().get_graph(title_text="Transactions In the Area",
                                       xdata=xdata,
                                       ydata=ydata,
