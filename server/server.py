@@ -102,11 +102,14 @@ def get_chart():
 def realtime_chart():
   radius = request.args.get('radius')
   product_type = request.args.get('product_type')
+  loc = request.args.get('loc')
   if radius:
     logger.info(f"get real time transactions in radius: {radius}")
   if product_type:
     logger.info(f"get real time transactions for product_type: {product_type}")
-  xdata, ydata = Realtime_Monitor.get_current_data(product_type=product_type, radius=float(radius))
+  if loc:
+    logger.info(f"get real time transactions for location: {loc}")
+  xdata, ydata = Realtime_Monitor.get_current_data(product_type=product_type, radius=float(radius), loc=loc)
   graph = Graph_Formatter().get_graph(title_text="Transactions In the Area",
                                       xdata=xdata,
                                       ydata=ydata,
