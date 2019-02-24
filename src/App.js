@@ -27,7 +27,7 @@ class App extends Component {
       radius: 0.001,
       loc: `${Math.random()}`,
       product_type: this.state.selectValue
-    })
+    });
     getAreaInfo({ x: circleCenter.lat, y: circleCenter.lng }).then(data =>
       this.setState({ areaInfoData: data || {} })
     );
@@ -35,7 +35,7 @@ class App extends Component {
 
   onBubbleRadiusChange = radius => {
     console.log('new radius changed');
-  }
+  };
 
   onSelectChange = e => {
     const transactions = mockSelectData[e.target.value];
@@ -58,8 +58,10 @@ class App extends Component {
       radius: 0.001,
       product_type: 'Baby',
       loc: '0'
-    }).then(option => {this.setState({data: option})});
-  }
+    }).then(option => {
+      this.setState({ rtData: option });
+    });
+  };
 
   beginAnimation = options => {
     clearInterval(this.intervalId);
@@ -68,7 +70,7 @@ class App extends Component {
         radius: options.radius || 0.001,
         product_type: options.product_type || 'Baby',
         loc: options.loc || '0'
-      }).then(option => this.setState({ data: option }));
+      }).then(option => this.setState({ rtData: option }));
     }, 1000);
   };
 
