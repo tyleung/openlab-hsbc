@@ -18,6 +18,6 @@ export function testApi() {
             Authorization: `DirectLogin token="eyJhbGciOiJIUzI1NiJ9.eyIiOiIifQ.8FcOstmReHMHIgi18nJCe_FIX2Pfic4_VizrYL2uEBg"`
         }
     }).then(response => {
-        console.log(response);
+        // console.log(response);
     });
 }
