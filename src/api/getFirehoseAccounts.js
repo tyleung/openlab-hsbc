@@ -24,12 +24,17 @@ export function getFirehoseTransactionsForAccount(accountId) {
     });
 }
 
+export function getAllTransactionData() {
+    // just return the mock transaction data
+    // return [];
+}
+
 // getFirehoseAccounts().then(data => {
 //     data.accounts.forEach(account => {
 //         console.log(account.id);
 //     })
 // })
 
-getFirehoseTransactionsForAccount("5e420e0e-f2ce-4f03-a67c-a1075343dc24").then(data => {
-    console.log(data);
-})
+// getFirehoseTransactionsForAccount("5e420e0e-f2ce-4f03-a67c-a1075343dc24").then(data => {
+    // console.log(data);
+// })
