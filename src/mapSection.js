@@ -16,6 +16,10 @@ class MapSection extends Component {
     //  });
   };
 
+  radiusChangedHandler = e => {
+    // this.
+  };
+
   renderCircle = center => {
     return (
       <Circle
@@ -30,6 +34,7 @@ class MapSection extends Component {
           this.setState({ circleCenter: undefined });
           this.props.onClick(undefined);
         }}
+        // onRadiusChanged={radiusChangedHandler}
       />
     );
   };
