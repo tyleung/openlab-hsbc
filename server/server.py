@@ -14,8 +14,12 @@ app = Flask(__name__)
 logging.basicConfig(level=logging.INFO,
                     format='[%(asctime)s][%(name)s][%(levelname)s][%(message)s]')
 logger = logging.getLogger(__name__)
-analysis_service = Analyst(user_db='./data/customer_info.json', trans_db="./data/transactions.json")
-search_service = Search(src_paths="./data/transactions.json")
+
+user_db = './data/customer_info.json'
+trans_db = './data/transactions.json'
+
+analysis_service = Analyst(user_db=user_db, trans_db=trans_db)
+search_service = Search(src_paths=trans_db)
 
 @app.route("/")
 def hello():
@@ -27,7 +31,7 @@ def search_locations_by_product_type():
   product_type = request.args.get('product_type')
   logger.info(f"search location by product type: {product_type}")
   locations = search_service.get_locations_by_product_type(product_type=product_type)
-  return locations
+  return jsonify({"locations": locations})
 
 
 @app.route("/get_area_info", methods=['GET'])
@@ -96,7 +100,13 @@ def get_chart():
 
 @app.route("/realtime_chart", methods=['GET'])
 def realtime_chart():
-  xdata, ydata = Realtime_Monitor.get_current_data()
+  radius = request.args.get('radius')
+  product_type = request.args.get('product_type')
+  if radius:
+    logger.info(f"get real time transactions in radius: {radius}")
+  if product_type:
+    logger.info(f"get real time transactions for product_type: {product_type}")
+  xdata, ydata = Realtime_Monitor.get_current_data(product_type=product_type, radius=float(radius))
   graph = Graph_Formatter().get_graph(title_text="Transactions In the Area",
                                       xdata=xdata,
                                       ydata=ydata,
