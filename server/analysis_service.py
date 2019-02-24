@@ -13,7 +13,7 @@ from os.path import join as pjoin
 
 from utils.rand_gen import Rand_Gen
 
-random.seed(5001)
+random.seed(5012)
 logging.basicConfig(level=logging.INFO,
                     format='[%(asctime)s][%(name)s][%(levelname)s][%(message)s]')
 logger = logging.getLogger(__name__)
