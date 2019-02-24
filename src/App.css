@@ -30,6 +30,7 @@
 .App-header {
   /* background-image: url('/assets/nova.jpg'); */
   height: 105px;
+  margin-top: 0.5rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16), 0 2px 6px rgba(0, 0, 0, 0.23);
   background: transparent url(/assets/bg-pattern.a61ac35d.svg) 0 0 repeat;
   /*background-color: #0baa90;*/
