@@ -12,7 +12,7 @@ export const getTransactionsAroundLocation = latlng => {
     });
 };
 
-export const getRealtimeData = (options) => {
+export const getRealtimeData = options => {
   return axios
     .get(`http://127.0.0.1:5000/realtime_chart?radius=${options.radius}&product_type=${options.product_type}&loc=${options.loc}`)
     .then(response => response.data)

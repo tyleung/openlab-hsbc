@@ -40,7 +40,13 @@ export class EchartsContainer1 extends Component {
   }
 }
 
-export class EchartsContainer2 extends Component {
+export class EchartsContainerRealTime extends Component {
+  render() {
+    return <ReactEcharts option={this.props.option} />;
+  }
+}
+
+export class EchartsContainerAreaInfo extends Component {
   render() {
     return <ReactEcharts option={this.props.option} />;
   }

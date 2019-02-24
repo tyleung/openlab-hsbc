@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { EchartsContainer2 } from './echartsContainer';
-import { getRealtimeData } from './api/transactions';
+import {
+  EchartsContainerRealTime,
+  EchartsContainerAreaInfo
+} from './echartsContainer';
 
 class InfoSection extends Component {
-  state = {
-    option: {}
-  };
-
   // componentDidUpdate(prevProps) {
   //   if (prevProps.circleCenter === this.props.circleCenter) {
   //     // do nothing
@@ -42,11 +40,21 @@ class InfoSection extends Component {
           Click an area on the map or select a category
         </span>
         <div className="info-section-charts">
-          <div className="info-section-chart-top" />
-          <hr />
-          <div className="info-section-chart-bottom">
-            <EchartsContainer2 option={this.props.data} />
+          <div className="info-section-chart-top">
+            <EchartsContainerRealTime option={this.props.rtData} />
           </div>
+          <hr />
+          {Object.keys(this.props.areaInfoData).map((objKey, index) => {
+            const data = this.props.areaInfoData[objKey];
+            if (data !== undefined) {
+              return (
+                <div key={index} className="info-section-chart-bottom">
+                  <EchartsContainerAreaInfo option={data} />
+                </div>
+              );
+            }
+            return null;
+          })}
         </div>
       </div>
     );
