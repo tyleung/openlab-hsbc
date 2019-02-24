@@ -8,7 +8,6 @@ import Footer from './footer';
 import { mockSelectData } from './utils';
 import { getRealtimeData } from './api/transactions';
 import './api/getFirehoseAccounts';
-import random from Math;
 
 class App extends Component {
   state = {
@@ -25,7 +24,7 @@ class App extends Component {
     this.setState({ circleCenter });
     this.beginAnimation({
       radius: 0.001,
-      loc: `${random()}`,
+      loc: `${Math.random()}`,
       product_type: this.state.selectValue
     })
   };
