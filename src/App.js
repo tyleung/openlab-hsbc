@@ -6,7 +6,7 @@ import MapSection from './mapSection';
 import CategorySelectOverlay from './categorySelectOverlay';
 import Footer from './footer';
 import { mockSelectData } from './utils';
-import { getRealtimeData } from './api/transactions';
+import { getRealtimeData, getAreaInfo } from './api/transactions';
 import './api/getFirehoseAccounts';
 
 class App extends Component {
@@ -14,7 +14,8 @@ class App extends Component {
     selectValue: undefined,
     transactions: [],
     circleCenter: undefined,
-    data: {}
+    rtData: {},
+    areaInfoData: {}
   };
 
   // assume point of sale
@@ -22,7 +23,19 @@ class App extends Component {
 
   onMapClick = circleCenter => {
     this.setState({ circleCenter });
+    this.beginAnimation({
+      radius: 0.001,
+      loc: `${Math.random()}`,
+      product_type: this.state.selectValue
+    })
+    getAreaInfo({ x: circleCenter.lat, y: circleCenter.lng }).then(data =>
+      this.setState({ areaInfoData: data || {} })
+    );
   };
+
+  onBubbleRadiusChange = radius => {
+    console.log('new radius changed');
+  }
 
   onSelectChange = e => {
     const transactions = mockSelectData[e.target.value];
@@ -30,7 +43,7 @@ class App extends Component {
     this.setState({ selectValue: e.target.value, transactions });
     this.beginAnimation({
       product_type: e.target.value
-    })
+    });
   };
 
   componentDidMount() {
@@ -38,12 +51,13 @@ class App extends Component {
     this.beginAnimation({
       product_type: 'Baby'
     });
-  };
+  }
 
   setNewChartData = options => {
     return getRealtimeData({
       radius: 0.001,
-      product_type: 'Baby'
+      product_type: 'Baby',
+      loc: '0'
     }).then(option => {this.setState({data: option})});
   }
 
@@ -52,10 +66,11 @@ class App extends Component {
     this.intervalId = setInterval(() => {
       getRealtimeData({
         radius: options.radius || 0.001,
-        product_type: options.product_type
+        product_type: options.product_type || 'Baby',
+        loc: options.loc || '0'
       }).then(option => this.setState({ data: option }));
     }, 1000);
-  }
+  };
 
   render() {
     return (
@@ -63,13 +78,18 @@ class App extends Component {
         <div className="main-section">
           <div className="main-left">
             <Header />
-            <InfoSection circleCenter={this.state.circleCenter} data={this.state.data} />
+            <InfoSection
+              circleCenter={this.state.circleCenter}
+              rtData={this.state.rtData}
+              areaInfoData={this.state.areaInfoData}
+            />
           </div>
           <div className="main-right">
             <CategorySelectOverlay onChange={this.onSelectChange} />
             <MapSection
               markers={this.state.transactions}
               onClick={this.onMapClick}
+              onRadiusChange={this.onBubbleRadiusChange}
             />
           </div>
         </div>
