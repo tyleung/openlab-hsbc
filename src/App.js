@@ -28,17 +28,22 @@ class App extends Component {
     const transactions = mockSelectData[e.target.value];
     console.log(transactions);
     this.setState({ selectValue: e.target.value, transactions });
+    this.beginAnimation({
+      product_type: e.target.value
+    })
   };
 
   componentDidMount() {
     this.setNewChartData();
-    this.beginAnimation();
+    this.beginAnimation({
+      product_type: 'Baby'
+    });
   };
 
   setNewChartData = options => {
     return getRealtimeData({
-      radius: 12,
-      product_type: 'asdf'
+      radius: 0.001,
+      product_type: 'Baby'
     }).then(option => {this.setState({data: option})});
   }
 
@@ -46,9 +51,9 @@ class App extends Component {
     clearInterval(this.intervalId);
     this.intervalId = setInterval(() => {
       getRealtimeData({
-        radius: 12,
-        product_type: 'asdf'
-      }).then(option => this.setState({ option }));
+        radius: options.radius || 0.001,
+        product_type: options.product_type
+      }).then(option => this.setState({ data: option }));
     }, 1000);
   }
 
