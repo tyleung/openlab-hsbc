@@ -40,10 +40,11 @@ def get_area_info():
 def get_chart():
   # ana = Analyst(user_db='../data/customer_info.json', trans_db="../data/transactions.json")
   # result = ana.analysis()
-  graph = Graph_Formatter().get_graph(title_text="Age Distribution of the Area",
-                                      xdata=['[0, 10)', '[21, 30)', '[15, 21)', '[10, 15)', '[30, 35)', '[35, 100)'],
-                                      ydata=[2578, 2249, 1603, 1293, 1222, 1055],
-                                      series_type = 'bar')
+  # graph = Graph_Formatter().get_graph(title_text="Age Distribution of the Area",
+  #                                     xdata=['[0, 10)', '[21, 30)', '[15, 21)', '[10, 15)', '[30, 35)', '[35, 100)'],
+  #                                     ydata=[2578, 2249, 1603, 1293, 1222, 1055],
+  #                                     series_type = 'bar')
+  graph = Graph_Formatter(type='pi').get_graph()
   response = make_response(jsonify(graph), 200)
   response.headers['Access-Control-Allow-Origin'] = '*'
   return response
