@@ -14,7 +14,33 @@ export const getTransactionsAroundLocation = latlng => {
 
 export const getRealtimeData = options => {
   return axios
-    .get(`http://127.0.0.1:5000/realtime_chart?radius=${options.radius}&product_type=${options.product_type}&loc=${options.loc}`)
+    .get(
+      `http://127.0.0.1:5000/realtime_chart?radius=${
+        options.radius
+      }&product_type=${options.product_type}`
+    )
+    .then(response => response.data)
+    .catch(error => {
+      console.log(error);
+    });
+};
+
+export const searchLocationsByProductType = options => {
+  return axios
+    .get(
+      `http://127.0.0.1:5000/search_locations_by_product_type?product_type=${
+        options.product_type
+      }`
+    )
+    .then(response => response.data)
+    .catch(error => {
+      console.log(error);
+    });
+};
+
+export const getAreaInfo = options => {
+  return axios
+    .get(`http://127.0.0.1:5000/get_area_info?x=${options.x}&y=${options.y}`)
     .then(response => response.data)
     .catch(error => {
       console.log(error);
