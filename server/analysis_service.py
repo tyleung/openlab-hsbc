@@ -111,8 +111,8 @@ class Analyst(object):
         return info
 
 
-if __name__ == "__main__":
-    ana = Analyst(user_db='./data/customer_info.json', trans_db="./data/transactions.json")
-    li = ['5c710e1723d8c12d2754a9a5', '5c710e174e07fefa14c42cde', '5c710e17b302c9be32cf4860', '5c710e1776d1a539396b13e3', '5c710e17c234e14b08bedc88', '5c710e170a524e7efc793843', '5c710e1805351b8b177b0f7c', '5c710e172054460f7289a531', '5c710e17f2b50ee11cfc263c', '5c710e178321180c5d03263c', '5c710e17b69b90993590ae60', '5c710e17eae8fa7b12a3194e', '5c710e177c82a8e540c0e107', '5c710e176f0ae8f1387b051f']
-    result = ana.analysis_users(li)
-    print(result)
+# if __name__ == "__main__":
+#     ana = Analyst(user_db='./data/customer_info.json', trans_db="./data/transactions.json")
+#     li = ['5c710e1723d8c12d2754a9a5', '5c710e174e07fefa14c42cde', '5c710e17b302c9be32cf4860', '5c710e1776d1a539396b13e3', '5c710e17c234e14b08bedc88', '5c710e170a524e7efc793843', '5c710e1805351b8b177b0f7c', '5c710e172054460f7289a531', '5c710e17f2b50ee11cfc263c', '5c710e178321180c5d03263c', '5c710e17b69b90993590ae60', '5c710e17eae8fa7b12a3194e', '5c710e177c82a8e540c0e107', '5c710e176f0ae8f1387b051f']
+#     result = ana.analysis_users(li)
+#     print(result)
