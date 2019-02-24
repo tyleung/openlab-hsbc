@@ -32,13 +32,14 @@ class Realtime_Monitor(object):
 
   random_seed = 5012
   product_type = ""
+  loc = ""
   radius = 0.001
 
   def __init__(self):
     pass
 
   @staticmethod
-  def reset_monitor(product_type="", radius=0.001):
+  def reset_monitor(product_type="", radius=0.001, loc=""):
     timerange = pd.date_range(start=dt.now().strftime('%Y%m%d'),
                               end=(dt.now() + timedelta(days=1)).strftime('%Y%m%d'),
                               freq='min')
@@ -50,24 +51,26 @@ class Realtime_Monitor(object):
     Realtime_Monitor.data = pd.Series(index=timerange, data=rand_data)
     Realtime_Monitor.product_type = product_type
     Realtime_Monitor.radius = radius
+    Realtime_Monitor.loc = loc
 
   @staticmethod
-  def get_current_data(product_type="", radius=0.001):
-    Realtime_Monitor.update_data(product_type=product_type, radius=radius)
+  def get_current_data(product_type="", radius=0.001, loc=""):
+    Realtime_Monitor.update_data(product_type=product_type, radius=radius, loc=loc)
     # xdata = Realtime_Monitor.data.reset_index()['index'].astype('str').tolist()
     xdata = Realtime_Monitor.data.reset_index()['index'].astype('str').apply(lambda x: x.split()[1]).tolist()
     ydata = Realtime_Monitor.data.tolist()
     return (xdata, ydata)
 
   @staticmethod
-  def update_data(product_type="", radius=0.001):
-    if Realtime_Monitor.product_type != product_type:
+  def update_data(product_type="", radius=0.001, loc=""):
+    if Realtime_Monitor.product_type != product_type or Realtime_Monitor.loc != loc:
       Realtime_Monitor.random_seed += 1
       random.seed(Realtime_Monitor.random_seed)
-      Realtime_Monitor.reset_monitor(product_type=product_type, radius=radius)
+      Realtime_Monitor.reset_monitor(product_type=product_type, radius=radius, loc=loc)
       return
     Realtime_Monitor.product_type = product_type
     Realtime_Monitor.radius = radius
+    Realtime_Monitor.loc = loc
     for _ in range(5):
       data = Realtime_Monitor.data
       value = np.abs(data[-1] + random.random() * (21000 * radius) - 10)
