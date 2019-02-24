@@ -6,13 +6,15 @@ import MapSection from './mapSection';
 import CategorySelectOverlay from './categorySelectOverlay';
 import Footer from './footer';
 import { mockSelectData } from './utils';
+import { getRealtimeData } from './api/transactions';
 import './api/getFirehoseAccounts';
 
 class App extends Component {
   state = {
     selectValue: undefined,
     transactions: [],
-    circleCenter: undefined
+    circleCenter: undefined,
+    data: {}
   };
 
   // assume point of sale
@@ -26,7 +28,34 @@ class App extends Component {
     const transactions = mockSelectData[e.target.value];
     console.log(transactions);
     this.setState({ selectValue: e.target.value, transactions });
+    this.beginAnimation({
+      product_type: e.target.value
+    })
   };
+
+  componentDidMount() {
+    this.setNewChartData();
+    this.beginAnimation({
+      product_type: 'Baby'
+    });
+  };
+
+  setNewChartData = options => {
+    return getRealtimeData({
+      radius: 0.001,
+      product_type: 'Baby'
+    }).then(option => {this.setState({data: option})});
+  }
+
+  beginAnimation = options => {
+    clearInterval(this.intervalId);
+    this.intervalId = setInterval(() => {
+      getRealtimeData({
+        radius: options.radius || 0.001,
+        product_type: options.product_type
+      }).then(option => this.setState({ data: option }));
+    }, 1000);
+  }
 
   render() {
     return (
@@ -34,7 +63,7 @@ class App extends Component {
         <div className="main-section">
           <div className="main-left">
             <Header />
-            <InfoSection circleCenter={this.state.circleCenter} />
+            <InfoSection circleCenter={this.state.circleCenter} data={this.state.data} />
           </div>
           <div className="main-right">
             <CategorySelectOverlay onChange={this.onSelectChange} />

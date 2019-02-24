@@ -7,25 +7,33 @@ class InfoSection extends Component {
     option: {}
   };
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.circleCenter === this.props.circleCenter) {
-      // do nothing
-    } else if (
-      this.props.circleCenter !== undefined &&
-      this.props.circleCenter !== prevProps.circleCenter
-    ) {
-      clearInterval(this.intervalId);
-      this.intervalId = setInterval(() => {
-        getRealtimeData().then(option => this.setState({ option }));
-      }, 1000);
-    } else {
-      clearInterval(this.intervalId);
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.circleCenter === this.props.circleCenter) {
+  //     // do nothing
+  //   } else if (
+  //     this.props.circleCenter !== undefined &&
+  //     this.props.circleCenter !== prevProps.circleCenter
+  //   ) {
+  //     clearInterval(this.intervalId);
+  //     this.intervalId = setInterval(() => {
+  //       getRealtimeData().then(option => this.setState({ option }));
+  //     }, 1000);
+  //   } else {
+  //     clearInterval(this.intervalId);
+  //   }
+  // }
 
-  componentWillUnmount() {
-    clearInterval(this.intervalId);
-  }
+  // componentWillUnmount() {
+  //   clearInterval(this.intervalId);
+  // }
+
+  // componentWillUpdate() {
+  //   console.log('lmfao')
+  // }
+
+  // componentDidUpdate() {
+  //   console.log('lmfao')
+  // }
 
   render() {
     return (
@@ -37,7 +45,7 @@ class InfoSection extends Component {
           <div className="info-section-chart-top" />
           <hr />
           <div className="info-section-chart-bottom">
-            <EchartsContainer2 option={this.state.option} />
+            <EchartsContainer2 option={this.props.data} />
           </div>
         </div>
       </div>
